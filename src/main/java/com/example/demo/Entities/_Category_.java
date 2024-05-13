@@ -14,10 +14,13 @@ public class _Category_ {
     public String Content;
     public String Created_At;
     public String Updated_At;
-    public byte[] Image;
+    public String Image;
 
-    @OneToMany
-    List<_BlogPost_>blogs;
+    @ManyToMany  // Optional: Cascade persist for posts
+    @JoinTable(name = "category_post",  // Define the name of the third table
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id"))
+    private List<_BlogPost_> posts;
 
 
     public String getUpdated_At() {
@@ -40,11 +43,11 @@ public class _Category_ {
         Name = name;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return Image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         Image = image;
     }
 
@@ -68,25 +71,11 @@ public class _Category_ {
         Content = content;
     }
 
-
-    public List<_BlogPost_> getBlogs() {
-        return blogs;
+    public List<_BlogPost_> getPosts() {
+        return posts;
     }
 
-    public void setBlogs(List<_BlogPost_> blogs) {
-        this.blogs = blogs;
-    }
-
-    @Override
-    public String toString() {
-        return "_Category_{" +
-                "Id=" + Id +
-                ", Name='" + Name + '\'' +
-                ", Content='" + Content + '\'' +
-                ", Created_At='" + Created_At + '\'' +
-                ", Updated_At='" + Updated_At + '\'' +
-                ", Image='" + Image + '\'' +
-                ", blogs=" + blogs +
-                '}';
+    public void setPosts(List<_BlogPost_> posts) {
+        this.posts = posts;
     }
 }

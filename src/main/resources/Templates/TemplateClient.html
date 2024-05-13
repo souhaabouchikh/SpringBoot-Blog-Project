@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bootstrap Blog - B5 Template by Bootstrap Temple</title>
+    <title>JourNox sdsdsds</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Google fonts - Open Sans-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iCT9pYPvCp70z4vCTuQOpbIp6v/QzGcoIhYoYCTa8mPpA2Bv7E3p+EVb" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-wugyQYPv+z9IgAtrlqaBRod1L0n8tGhiUejEJLgfA9T8mRtGnDqQv95yQOKPbEK0" crossorigin="anonymous"></script>
+
     <!-- gLightbox-->
-    <link rel="stylesheet" href="../../../vendor/glightbox/css/glightbox.css">
+    <link rel="stylesheet" th:href="@{/vendor/glightbox/css/glightbox.css}">
     <!-- Theme stylesheet-->
-    <link rel="stylesheet" href="../../../css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.default.css}" id="theme-stylesheet">
     <!-- gLightbox-->
-    <link rel="stylesheet" href="../../../vendor/glightbox/glightbox.css">
+    <link rel="stylesheet" th:href="@{/vendor/glightbox/glightbox.css}">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../../../css/custom.css">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="../../../Images/blog_logoo.png">
+    <link rel="shortcut icon" th:href="@{/Images/blog_logoo.png}">
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-2">
     <img
-            src="../../../Images/blog_logoo.png"
+            th:src="@{/Images/blog_logoo.png}"
             height="50"
             alt="BLOG Logo"
             loading="eager"
@@ -43,6 +47,29 @@
                 </li>
                 <li class="nav-item"><a class="nav-link " href="/Contact">Contact</a>
                 </li>
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="user-name d-none d-md-block" href="login">Login/SignUp</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="isAuthenticated()" class="user-name d-none d-md-block" href="/Profile" th:text="${#authentication.name}"></a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <span class="user-roles text-muted">
+                        <span th:each="role : ${#authentication.authorities}">
+                            <span th:if="${role.authority == 'ROLE_ADMIN'}">
+                                <a class="nav-link" href="/CategoryPanel">Admin Panel</a>
+                            </span>
+                        </span>
+                    </span>
+                </li>
+
+
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <form method="post" th:action="@{/logout}">
+                    <button class="dropdown-item" type="submit">Logout</button>
+                    </form>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -88,9 +115,9 @@
 </footer>
 
 <!-- JavaScript files-->
-<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../../../vendor/glightbox/glightbox.js"></script>
-<script src="../../../js/theme.js"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/vendor/glightbox/glightbox.js}"></script>
+<script th:src="@{/js/theme.js}"></script>
 <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </body>

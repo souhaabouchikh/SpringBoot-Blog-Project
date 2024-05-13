@@ -16,10 +16,10 @@ layout:decorate="Template.html">
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="assetsAdmin/images/favicon.svg">
+		<link rel="shortcut icon" th:href="@{/assetsAdmin/images/favicon.svg}">
 
 		<!-- Title -->
-		<title>Modern Admin Dashboards</title>
+		<title>Create BlogPost</title>
 
 
 		<!-- *************
@@ -27,21 +27,16 @@ layout:decorate="Template.html">
 		************ -->
 
 		<!-- Animated css -->
-		<link rel="stylesheet" href="assetsAdmin/css/animate.css">
+		<link rel="stylesheet" th:href="@{/assetsAdmin/css/animate.css}">
 
 		<!-- Bootstrap font icons css -->
-		<link rel="stylesheet" href="assetsAdmin/fonts/bootstrap/bootstrap-icons.css">
+		<link rel="stylesheet" th:href="@{/assetsAdmin/fonts/bootstrap/bootstrap-icons.css}">
 
 		<!-- Main css -->
-		<link rel="stylesheet" href="assetsAdmin/css/main.min.css">
-
-
-		<!-- *************
-			************ Vendor Css Files *************
-		************ -->
+		<link rel="stylesheet" th:href="@{/assetsAdmin/css/main.min.css}">
 
 		<!-- Scrollbar CSS -->
-		<link rel="stylesheet" href="assetsAdmin/vendor/overlay-scroll/OverlayScrollbars.min.css">
+		<link rel="stylesheet" th:href="@{/assetsAdmin/vendor/overlay-scroll/OverlayScrollbars.min.css}">
 
 	</head>
 
@@ -59,7 +54,7 @@ layout:decorate="Template.html">
 					<div class="card-body">
 
 						<!-- Row start -->
-						<form th:action="@{SaveBlogPost}" method="post" >
+						<form th:action="@{SaveBlogPost}" method="post" enctype="multipart/form-data">
 							<div class="row mb-3">
 								<label class="col-sm-2 col-form-label">Title:</label>
 								<div class="col-sm-3">
@@ -72,23 +67,19 @@ layout:decorate="Template.html">
 									<textarea id="Content" name="Content" rows="20" cols="100"></textarea>
 								</div>
 							</div>
-<!--							<div class="row mb-3">-->
-<!--								<label class="col-sm-2 col-form-label">Category:</label>-->
-<!--								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-<!--									<a class="dropdown-item" href="#" th:each="cat : ${cats_list}" th:value="${cat.Id}">sfrgblsjknglsre</a>-->
-<!--								</div>-->
-<!--								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--									Dropdown button-->
-<!--								</button>-->
+							<div th:object="${dropdown}" class="col-2 my-1">
+								<label for="Estado" class="mr-sm-4" >Categories:</label>
+								<select class="custom-select mr-sm-4" id="Estado" name="category" required>
+									<option th:each="cat : ${dropdown}" th:text="${cat.Name}" th:value="${cat.Id}"></option>
+								</select>
+							</div>
 
-<!--							</div>-->
-
-							<!--											<div class="row mb-3">-->
-							<!--												<label class="col-sm-2 col-form-label">Description:</label>-->
-							<!--												<div class="col-sm-3">-->
-							<!--													<input type="file" class="form-control" id="Image" name="Image">-->
-							<!--												</div>-->
-							<!--											</div>-->
+							<div class="row mb-3">
+								<label class="col-sm-2 col-form-label">Category Image File (optional):</label>
+								<div class="col-sm-3">
+									<input type="file" class="form-control" id="Image" name="file">
+								</div>
+							</div>
 							<!-- Form actions footer start -->
 							<div class="form-actions-footer">
 								<button class="btn btn-light" >Cancel</button>

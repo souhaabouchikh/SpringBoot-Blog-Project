@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,23 +22,28 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http, HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .formLogin(Customizer.withDefaults()).
-                httpBasic(Customizer.withDefaults())
+//                .formLogin(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(
                         authCustomizer->authCustomizer
-                                .requestMatchers("/CategoryPanel","/CreateCategory","/DeleteCategory","/SaveCategory","/AllPosts","/CreatePost",
-                                        "/DeletePost","/DeletePost","/UpdateCategory",
-                                        "/UpdateBlogPost","/ShowPost").hasRole("ADMIN")
-                                .requestMatchers("/").hasAnyRole("ADMIN","CLIENT")
-                                .anyRequest().authenticated())
+                                .requestMatchers("/login","/signup","/Profile","/webjars/**","/images/**","/assets/**","/assetsAdmin/**"
+                                        ,"/css/**","/img/**","/js/**","/vendor/**").permitAll()
+
+                                .requestMatchers("/CategoryPanel","/CreateCategory","/AllPosts","/CreatePost","/ShowPost").hasRole("ADMIN")
+                                .requestMatchers("/Profile","/ProfileAdmin").hasAnyRole("ADMIN","CLIENT")
+                                .anyRequest().permitAll()
+                )
+                .formLogin(
+                        formLogin->formLogin.loginPage("/login")
+                                .defaultSuccessUrl("/")
+                )
                 .exceptionHandling(e->e.accessDeniedPage("/Access_Denied"))
-
-
                 .build();
-
     }
 
-    @Bean
+
+
+//    @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         return new InMemoryUserDetailsManager(
                 User.withUsername("admin").password(bCryptPasswordEncoder().encode("admin@123")).roles("ADMIN").build(),

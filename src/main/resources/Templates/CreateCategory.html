@@ -16,10 +16,10 @@
 		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
 		<meta property="og:type" content="Website">
 		<meta property="og:site_name" content="Bootstrap Gallery">
-		<link rel="shortcut icon" href="assetsAdmin/images/favicon.svg">
+		<link rel="shortcut icon" th:href="@{/assetsAdmin/images/favicon.svg}">
 
 		<!-- Title -->
-		<title>Modern Admin Dashboards</title>
+		<title>Create Category</title>
 
 
 		<!-- *************
@@ -27,21 +27,16 @@
 		************ -->
 
 		<!-- Animated css -->
-		<link rel="stylesheet" href="assetsAdmin/css/animate.css">
+		<link rel="stylesheet" th:href="@{/assetsAdmin/css/animate.css}">
 
 		<!-- Bootstrap font icons css -->
-		<link rel="stylesheet" href="assetsAdmin/fonts/bootstrap/bootstrap-icons.css">
+		<link rel="stylesheet" th:href="@{/assetsAdmin/fonts/bootstrap/bootstrap-icons.css}">
 
 		<!-- Main css -->
-		<link rel="stylesheet" href="assetsAdmin/css/main.min.css">
-
-
-		<!-- *************
-			************ Vendor Css Files *************
-		************ -->
+		<link rel="stylesheet" th:href="@{/assetsAdmin/css/main.min.css}">
 
 		<!-- Scrollbar CSS -->
-		<link rel="stylesheet" href="assetsAdmin/vendor/overlay-scroll/OverlayScrollbars.min.css">
+		<link rel="stylesheet" th:href="@{/assetsAdmin/vendor/overlay-scroll/OverlayScrollbars.min.css}">
 
 	</head>
 
@@ -60,7 +55,7 @@
 					<div class="card-body">
 
 						<!-- Row start -->
-						<form th:action="@{SaveCategory}" method="post" >
+						<form th:action="@{SaveCategory}" method="post" enctype="multipart/form-data" >
 							<div class="row mb-3">
 								<label class="col-sm-2 col-form-label">Name:</label>
 								<div class="col-sm-3">
@@ -74,29 +69,25 @@
 									<textarea id="Content" name="Content" rows="20" cols="100"></textarea>
 								</div>
 							</div>
-							<!--											<div class="row mb-3">-->
-							<!--												<label class="col-sm-2 col-form-label">Description:</label>-->
-							<!--												<div class="col-sm-3">-->
-							<!--													<input type="file" class="form-control" id="Image" name="Image">-->
-							<!--												</div>-->
-							<!--											</div>-->
+
+							<div class="row mb-3">
+								<label class="col-sm-2 col-form-label">Category Image File (optional):</label>
+								<div class="col-sm-3">
+									<input type="file" class="form-control" id="Image" name="file">
+								</div>
+							</div>
 							<!-- Form actions footer start -->
 							<div class="form-actions-footer">
-								<button class="btn btn-light" >Cancel</button>
 								<button class="btn btn-success" type="submit">Submit</button>
 							</div>
 						</form>
 						<!-- Row end -->
-
-
 						<!-- Form actions footer end -->
 
 					</div>
 				</div>
 				<!-- Card end -->
-
 			</div>
-
 		</div>
 		<!-- Row end -->
 	</div>
