@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <!-- Required meta tags -->
@@ -17,7 +18,7 @@
     <meta property="og:type" content="Website">
     <meta property="og:site_name" content="Bootstrap Gallery">
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="assetsAdmin/images/favicon.svg">
+    <link rel="shortcut icon" th:href="@{/assetsAdmin/images/favicon.svg}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -31,13 +32,13 @@
     ************ -->
 
     <!-- Animated css -->
-    <link rel="stylesheet" href="assetsAdmin/css/animate.css">
+    <link rel="stylesheet" th:href="@{/assetsAdmin/css/animate.css}">
 
     <!-- Bootstrap font icons css -->
-    <link rel="stylesheet" href="assetsAdmin/fonts/bootstrap/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/assetsAdmin/fonts/bootstrap/bootstrap-icons.css}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="assetsAdmin/css/main.min.css">
+    <link rel="stylesheet" th:href="@{/assetsAdmin/css/main.min.css}">
 
 
     <!-- *************
@@ -45,7 +46,7 @@
     ************ -->
 
     <!-- Scrollbar CSS -->
-    <link rel="stylesheet" href="assetsAdmin/vendor/overlay-scroll/OverlayScrollbars.min.css">
+    <link rel="stylesheet" th:href="@{/assetsAdmin/vendor/overlay-scroll/OverlayScrollbars.min.css}">
 
 </head>
 
@@ -58,8 +59,8 @@
 
         <!-- Sidebar brand starts -->
         <div class="sidebar-brand">
-            <a href="index.html" class="logo">
-                <img src="Images/blog_logoo.png" alt="Admin Dashboard" />
+            <a href="/" class="logo">
+                <img th:src="@{/images/blog_logoo.png}" alt="Admin Dashboard" />
             </a>
         </div>
         <!-- Sidebar brand starts -->
@@ -79,12 +80,12 @@
                             <span class="menu-text">Articles</span>
                         </a>
                     </li>
-                    <li class="sidebar">
-                        <a href="UsersPanel">
-                            <i class="bi bi-person"></i>
-                            <span class="menu-text">Users</span>
-                        </a>
-                    </li>
+<!--                    <li class="sidebar">-->
+<!--                        <a href="UsersPanel">-->
+<!--                            <i class="bi bi-person"></i>-->
+<!--                            <span class="menu-text">Users</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
 
                 </ul>
             </div>
@@ -122,17 +123,16 @@
                         <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
                             <span class="user-name d-none d-md-block" th:text="${#authentication.name}"></span>
                             <span class="avatar">
-										<img src="assetsAdmin/images/user.png" alt="Admin Templates">
+										<img th:src="@{/assetsAdmin/images/user.png}" alt="Admin Templates">
 										<span class="status online"></span>
 									</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userSettings">
                             <div class="header-profile-actions">
-                                <a href="/AdminProfil">Profile</a>
+                                <a href="/ProfileAdmin">Profile</a>
                                 <form method="post" th:action="@{/logout}">
                                     <button class="dropdown-item" type="submit">Logout</button>
                                 </form>
-<!--                                <a href="/logout">Logout</a>-->
                             </div>
                         </div>
                     </li>
@@ -161,24 +161,31 @@
     </div>
 </div>
 <!-- Required jQuery first, then Bootstrap Bundle JS -->
-<script src="assetsAdmin/js/jquery.min.js"></script>
-<script src="assetsAdmin/js/bootstrap.bundle.min.js"></script>
-<script src="assetsAdmin/js/modernizr.js"></script>
-<script src="assetsAdmin/js/moment.js"></script>
+<script th:src="@{/assetsAdmin/js/jquery.min.js}"></script>
+<script th:src="@{/assetsAdmin/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assetsAdmin/js/modernizr.js}"></script>
+<script th:src="@{/assetsAdmin/js/moment.js}"></script>
 
 <!-- *************
     ************ Vendor Js Files *************
 ************* -->
 
 <!-- Overlay Scroll JS -->
-<script src="assetsAdmin/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
-<script src="assetsAdmin/vendor/overlay-scroll/custom-scrollbar.js"></script>
+<script th:src="@{/assetsAdmin/vendor/overlay-scroll/jquery.overlayScrollbars.min.js}"></script>
+<script th:src="@{/assetsAdmin/vendor/overlay-scroll/custom-scrollbar.js}"></script>
 
 <!-- Main Js Required -->
-<script src="assetsAdmin/js/main.js"></script>
+<script th:src="@{/assetsAdmin/js/main.js}"></script>
 
 <!-- Product Js -->
-<script src="assetsAdmin/js/product.js"></script>
+<script th:src="@{/assetsAdmin/js/product.js}"></script>
+
+<!-- JavaScript files-->
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/vendor/glightbox/glightbox.js}"></script>
+<script th:src="@{/js/theme.js}"></script>
+<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 </body>
 

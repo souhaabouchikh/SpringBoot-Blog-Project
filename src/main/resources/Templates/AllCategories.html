@@ -18,7 +18,7 @@
         <div class="list-group" >
             <br>
             <br>
-            <a href="#" class="list-group-item" th:each="cat:${cats_list}">
+            <a class="list-group-item" th:each="cat:${cats_list}" th:href="@{PostOf(id=${cat.id})}" >
                 <h4 class="list-group-item-heading" th:text="${cat.Name}"></h4>
             </a>
         </div>

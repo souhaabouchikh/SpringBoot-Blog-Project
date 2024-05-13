@@ -14,24 +14,57 @@ public class _BlogPost_ {
     public String Content;
     public String Created_At;
     public String Updated_At;
+    public String Image;
 
-
-    @ManyToOne // One BlogPost belongs to one Category
-    @JoinColumn(name = "category_id") // Foreign key column name (optional)
+    @ManyToOne   // One post belongs to one category (optional, can be removed if a post can belong to multiple categories)
     private _Category_ category;
 
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     public List<_Like_>likes;
 
-    public _BlogPost_(Long id, String title, String content, String created_At, String updated_At, _Category_ category, List<_Like_> likes) {
+
+    @OneToMany(mappedBy = "blogPost", cascade = CascadeType.ALL)
+    private List<_Comment_> comments;
+
+    public _BlogPost_(Long id, String title, String content, String created_At, String image, String updated_At, List<_Like_> likes, _Category_ category, List<_Comment_> comments) {
         Id = id;
         Title = title;
         Content = content;
         Created_At = created_At;
+        Image = image;
         Updated_At = updated_At;
-        this.category = category;
         this.likes = likes;
+        this.category = category;
+        this.comments = comments;
     }
+
+    public _Category_ getCategory() {
+        return category;
+    }
+
+    public void setCategory(_Category_ category) {
+        this.category = category;
+    }
+
+    public List<_Comment_> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<_Comment_> comments) {
+        this.comments = comments;
+    }
+
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+
+
 
     public _BlogPost_() {
     }
@@ -66,14 +99,6 @@ public class _BlogPost_ {
 
     public void setContent(String content) {
         Content = content;
-    }
-
-    public _Category_ getCategory() {
-        return category;
-    }
-
-    public void setCategory(_Category_ category) {
-        this.category = category;
     }
 
     public String getUpdated_At() {

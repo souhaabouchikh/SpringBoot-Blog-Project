@@ -16,4 +16,5 @@ public interface CategoryService {
     void deleteAllCategories();
     List<_Category_> getAllCategories();
     Page<_Category_> GetAllCategoriesByPage(int page, int size);
+    void updateCategorySelective(Long categoryId, String name, String description, String updatedAt);
 }

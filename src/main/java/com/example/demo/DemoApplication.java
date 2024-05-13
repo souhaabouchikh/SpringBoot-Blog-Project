@@ -15,14 +15,16 @@ public class DemoApplication {
     @Bean
     public CommandLineRunner demo(AccountService accountService) {
         return args -> {
-            accountService.CreateUser("admin","123","admin@gmail.com","123");
-            accountService.CreateRole("ADMIN");
-            accountService.CreateRole("CLIENT");
-
-            accountService.AddRoleToUser("admin","ADMIN");
-            accountService.AddRoleToUser("admin","CLIENT");
-            accountService.RemoveRoleFromUser("admin","CLIENT");
-            System.out.println(accountService.loadUserByUsername("admin").getEmail());
+//            accountService.CreateUser("admin","123","admin@gmail.com","123");
+//            accountService.CreateUser("client","123","client@gmail.com","123");
+//            accountService.CreateRole("ADMIN");
+//            accountService.CreateRole("CLIENT");
+//
+//            accountService.AddRoleToUser("admin","ADMIN");
+//            accountService.AddRoleToUser("admin","CLIENT");
+//            accountService.AddRoleToUser("client","CLIENT");
+//            //accountService.RemoveRoleFromUser("admin","CLIENT");
+//            System.out.println(accountService.loadUserByUsername("admin").getEmail());
         };
     }
 }

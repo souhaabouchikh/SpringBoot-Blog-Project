@@ -9,6 +9,12 @@ public class RoutesController {
     public String Contact(){
         return "Contact";
     }
+
+//    @RequestMapping("/login2")
+//    public String login(){
+//        return "login";
+//    }
+
 //    @RequestMapping(value = {"/Index", "/"})
 //    public String index(){
 //        return "index";

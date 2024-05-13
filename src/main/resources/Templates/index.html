@@ -5,30 +5,31 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bootstrap Blog - B5 Template by Bootstrap Temple</title>
+    <title>HomePage</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Google fonts - Open Sans-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <!-- gLightbox-->
-    <link rel="stylesheet" href="../../../vendor/glightbox/css/glightbox.css">
+    <link rel="stylesheet" th:href="@{/vendor/glightbox/css/glightbox.css}">
     <!-- Theme stylesheet-->
-    <link rel="stylesheet" href="../../../css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.default.css}" id="theme-stylesheet">
     <!-- gLightbox-->
-    <link rel="stylesheet" href="../../../vendor/glightbox/glightbox.css">
+    <link rel="stylesheet" th:href="@{/vendor/glightbox/glightbox.css}">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../../../css/custom.css">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="../../../Images/blog_logoo.png">
+    <link rel="shortcut icon" th:href="@{/images/blog_logoo.png}">
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
   </head>
+
   <body>
 
   <div layout:fragment="content">
 
     <!-- Hero Section-->
-    <section class="hero position-relative" style="background-image: url(../../../img/hero.jpeg); background-size: cover; background-position: center center">
+    <section class="hero position-relative" style="background-image: url(/img/hero.jpeg); background-size: cover; background-position: center center">
       <div class="container text-white py-5">
         <div class="row py-lg-5">
           <div class="col-lg-7">
@@ -55,16 +56,22 @@
           <h2>Latest from the blog</h2>
         </header>
         <div class="row gy-4">
-          <div class="col-md-4"  th:each="post:${post_list}"><a class="mb-3" th:href="@{ThatPost(id=${post.id})}"><img class="img-fluid" src="../../../img/blog-1.jpg" alt="..."/></a>
-            <div class="d-flex align-items-center justify-content-between mb-2" th:text="${post.Created_At}"><small class="text-gray-500" ></small></div>
-            <h3 class="h4"><a class="text-dark" href="post.html" th:text="${post.Title}" th:href="@{ThatPost(id=${post.id})}"></a></h3>
-            <!--            <p class="text-muted text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>-->
+          <div class="col-md-4"  th:each="post:${post_list}"><a class="mb-3" th:href="@{ThatPost(id=${post.id})}">
+            <a class="mb-3" th:href="@{ThatPost(id=${post.id})}">
+              <img class="img-fluid" th:src="${post.image}" alt="..."/>
+            </a>
+            <div class="d-flex align-items-center justify-content-between mb-2" th:text="${post.Created_At}">
+              <small class="text-gray-500" ></small>
+            </div>
+            <h3 class="h4">
+              <a class="text-dark" href="post.html" th:text="${post.Title}" th:href="@{ThatPost(id=${post.id})}"></a>
+            </h3>
           </div>
         </div>
       </div>
     </section>
     <!-- Divider Section-->
-    <section class="divider" style="background: url(../../../img/divider-bg.jpg); background-size: cover; background-position: center bottom">
+    <section class="divider" style="background: url(/img/divider-bg.jpg); background-size: cover; background-position: center bottom">
       <div class="container text-white">
         <div class="row">
           <div class="col-md-7">
@@ -105,7 +112,6 @@
           <div class="fsc-hover-overlay"><i class="fas fa-search fsc-hover-overlay-icon"></i></div></a></div>
       </div>
     </section>
-
   </div>
   </body>
 </html>
