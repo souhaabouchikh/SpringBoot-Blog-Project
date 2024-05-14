@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      layout:decorate="TemplateClient.html">
+<head>
+</head>
+<style>
+    .my-fixed-section { /* Add a class for the section */
+        width: 100%;  /* Set desired width */
+        max-width: 1200px;  /* Optional: Set a maximum width */
+        height: 800px;  /* Set desired height */
+        margin: 0 auto;  /* Center the section horizontally */
+        background-color: white; /* Set background color */
+    }
+    .card-thumbnail img {
+        object-fit: cover;  /* Stretch to cover the container */
+    }
+
+</style>
+<body>
+
+<div layout:fragment="content">
+    <section class="bg-light py-4 my-5 my-fixed-section">  <div class="container">
+        <div class="row">
+            <th:block th:each="blogpost:${post_list}">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card my-3">
+                        <div class="card-thumbnail">
+                            <div class="image-wrapper">  <img th:src="${blogpost.Image}" class="img-fluid" alt="thumbnail">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <a th:href="@{ThatPost(id=${blogpost.Id})}" class="text-secondary" th:text="${blogpost.Title}">Post Title</a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+
+        </div>
+    </div>
+    </section>
+
+</div>
+</body>
+</html>

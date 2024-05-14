@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+layout:decorate="Template.html">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Meta -->
+		<meta name="description" content="Moonlight - Responsive Bootstrap 5 Dashboard Template">
+		<meta name="author" content="Bootstrap Gallery" />
+		<link rel="canonical" href="https://www.bootstrap.gallery/">
+		<meta property="og:url" content="https://www.bootstrap.gallery">
+		<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+		<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+		<meta property="og:type" content="Website">
+		<meta property="og:site_name" content="Bootstrap Gallery">
+		<link rel="shortcut icon" th:href="@{/assetsAdmin/images/favicon.svg}">
+
+		<!-- Title -->
+		<title>Profile</title>
+
+
+		<!-- *************
+			************ Common Css Files *************
+		************ -->
+
+		<!-- Animated css -->
+		<link rel="stylesheet" th:href="@{/assetsAdmin/css/animate.css}">
+
+		<!-- Bootstrap font icons css -->
+		<link rel="stylesheet" th:href="@{/assetsAdmin/fonts/bootstrap/bootstrap-icons.css}">
+
+		<!-- Main css -->
+		<link rel="stylesheet" th:href="@{/assetsAdmin/css/main.min.css}">
+
+
+		<!-- *************
+			************ Vendor Css Files *************
+		************ -->
+
+		<!-- Scrollbar CSS -->
+		<link rel="stylesheet" th:href="@{/assetsAdmin/vendor/overlay-scroll/OverlayScrollbars.min.css}">
+
+		<style>
+	body {
+		font-family: sans-serif;
+	}
+
+	.profilepic {
+		position: relative;
+		width: 125px;
+		height: 125px;
+		border-radius: 50%;
+		overflow: hidden;
+		background-color: #111;
+	}
+
+	.profilepic:hover .profilepic__content {
+		opacity: 1;
+	}
+
+	.profilepic:hover .profilepic__image {
+		opacity: .5;
+	}
+
+	.profilepic__image {
+		object-fit: cover;
+		opacity: 1;
+		transition: opacity .2s ease-in-out;
+	}
+
+	.profilepic__content {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		color: white;
+		opacity: 0;
+		transition: opacity .2s ease-in-out;
+	}
+
+	.profilepic__icon {
+		color: white;
+		padding-bottom: 8px;
+	}
+
+	.fas {
+		font-size: 20px;
+	}
+
+	.profilepic__text {
+		text-transform: uppercase;
+		font-size: 12px;
+		width: 50%;
+		text-align: center;
+	}
+</style>
+	</head>
+
+	<body>
+	<div class="content-wrapper" layout:fragment="content">
+		<!-- Row start -->
+		<div class="container rounded bg-white mt-5">
+			<div class="row">
+				<div class="col-md-4 border-right">
+					<div class="d-flex flex-column align-items-center text-center p-3 py-5">
+						<form>
+							<div class="card-body text-center">
+								<img th:src="@{/assetsAdmin/images/user.png}" alt="user-image" class="img-fluid rounded-circle wid-100" style="width: 125px; height: 125px;">
+								<!--								<small class="d-block my-3 text-muted">Upload/Change Your Profile Image</small>-->
+<!--								<button class="btn btn-primary">Upload Avatar</button>-->
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="p-3 py-5">
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+								<h6>Profile:</h6>
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-6"><input readonly type="text" class="form-control" placeholder="address" th:value="${user.userId}"></div>
+						</div>
+						<div class="row mt-2">
+							<div class="col-md-6"><input readonly type="text" class="form-control" placeholder="Username" th:value="${user.username}"></div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-6"><input readonly type="text" class="form-control" placeholder="Email" th:value="${user.email}"></div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-6"><input readonly type="text" class="form-control" placeholder="Email" th:value="${user.roles}"></div>
+						</div>
+
+<!--						<div class="mt-5 text-right"><button readonly class="btn btn-primary profile-button" type="button">Save Profile</button></div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+
+</html>
